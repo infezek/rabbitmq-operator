@@ -1,0 +1,18 @@
+version: "3"
+
+vars:
+  VERSION: 28
+
+tasks:
+  default:
+    cmds:
+      - echo "Verions beta - {{.VERSION}}"
+      - make docker-build docker-push IMG=infectiionz/rabbitmq-operator:beta{{.VERSION}}
+      - make deploy IMG=infectiionz/rabbitmq-operator:beta{{.VERSION}}
+      - ./.script/increment_version.sh Taskfile.yml
+  role:
+    cmds:
+      - ./.script/rules_apply.sh
+  log:
+    cmds:
+      - ./.script/log.sh
