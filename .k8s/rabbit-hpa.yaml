@@ -1,0 +1,18 @@
+apiVersion: apps.my.domain/v1
+kind: RabbitHPA
+metadata:
+  name: rabbitmq-hpa
+  namespace: default
+spec:
+  rabbit:
+    namespace: "rabbitmq"
+    host: "rabbitmq"
+    username: "admin"
+    password: "admin"
+    queue: "my"
+  hpa:
+    label: "ubuntu-deployment"
+    namespace: "ubuntu"
+    replicasetPerMessage: 2
+    minReplicas: 1
+    maxReplicas: 5

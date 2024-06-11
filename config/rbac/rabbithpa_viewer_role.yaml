@@ -1,0 +1,23 @@
+# permissions for end users to view rabbithpas.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: rabbitmq-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: rabbithpa-viewer-role
+rules:
+- apiGroups:
+  - apps.my.domain
+  resources:
+  - rabbithpas
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.my.domain
+  resources:
+  - rabbithpas/status
+  verbs:
+  - get

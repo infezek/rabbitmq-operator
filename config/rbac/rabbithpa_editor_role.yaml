@@ -1,0 +1,27 @@
+# permissions for end users to edit rabbithpas.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: rabbitmq-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: rabbithpa-editor-role
+rules:
+- apiGroups:
+  - apps.my.domain
+  resources:
+  - rabbithpas
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.my.domain
+  resources:
+  - rabbithpas/status
+  verbs:
+  - get
